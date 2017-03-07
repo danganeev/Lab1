@@ -58,7 +58,7 @@
                 <ComboBoxItem>часов</ComboBoxItem>
                 <ComboBoxItem>дней</ComboBoxItem>
          </ComboBox>
-         <CheckBox VerticalAlignment="Center">Многогратное</CheckBox>
+         <CheckBox VerticalAlignment="Center">Многократное</CheckBox>
             
         </StackPanel>
         <Button Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" Width="70">Отмена</Button>
