@@ -6,62 +6,65 @@
         xmlns:system="crl-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Lab1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Новое событие" Height="585" Width="485">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition />
+            <RowDefinition Height="2*"/>
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition  Height="0.8*"/>
+            <RowDefinition  Height="0.8*"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Left" Margin="20,0,0,0 ">Новое событие</Label>
-        <TextBlock  Grid.Column="0" Grid.Row="1" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Название события</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="1" Width="250" Height="20" HorizontalAlignment="Left"></TextBox>
-        <TextBlock  Grid.Column="0" Grid.Row="2" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Описание события</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="2" Width="250" Height="39" HorizontalAlignment="Left" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
-        <Grid Grid.Column="0" Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <TextBlock  Grid.Column="0" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Дата</TextBlock>
-            <DatePicker Grid.Column="1" VerticalAlignment="Center"></DatePicker>
-        </Grid>
-        
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontFamily="Comic Sans MS" FontSize="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="20,0,0,0 ">Новое событие</Label>
+
+        <TextBlock  Grid.Column="0" Grid.Row="1" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Название события</TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="1" Width="286" Height="20" HorizontalAlignment="Left" Margin="0,23,0,17"></TextBox>
+
+        <TextBlock  Grid.Column="0" Grid.Row="2" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,18,0,0 ">Описание события</TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="2" Width="286" MinHeight="44" HorizontalAlignment="Left" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,15"></TextBox>
+
+
+        <TextBlock  Grid.Column="0" Grid.Row="3" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Дата</TextBlock>
+
+
+
         <Grid Grid.Column="1" Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock  Grid.Column="0" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Время</TextBlock>
-            <TextBox Grid.Column="2" Width="50" Height="20" VerticalAlignment="Center"></TextBox>
+            <DatePicker Grid.Column="0" Width="120" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,18,0,19"/>
+            <TextBlock  Grid.Column="1" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="35,0,0,0 ">Время</TextBlock>
+            <TextBox Grid.Column="1" Width="95" Height="20" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,27,0" Grid.ColumnSpan="2"></TextBox>
             <!--<TextBox Text="{Binding Source={x:Static System:DateTime.Now}, StringFormat=Time:{HH:mm}}"  Grid.Column="2" Width="70" Height="20" VerticalAlignment="Center"></TextBox>-->
         </Grid>
-        
+
         <!--<TextBlock  Grid.Column="0" Grid.Row="3" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Дата</TextBlock>-->
-        <TextBlock  Grid.Column="0" Grid.Row="4" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Место</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="4" Width="250" Height="20" HorizontalAlignment="Left"></TextBox>
-        <CheckBox Grid.Column="0" Grid.Row="5" Margin="27,0,0,0 " VerticalAlignment="Center" Grid.ColumnSpan="2">Уведомление</CheckBox>
+        <TextBlock  Grid.Column="0" Grid.Row="4" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Место</TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="4" Width="286" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
+
+        <CheckBox Grid.Column="0" Grid.Row="5" Margin="27,0,0,0 " FontSize="13" VerticalAlignment="Center" Grid.ColumnSpan="2">Уведомление</CheckBox>
+
         <StackPanel Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="27,0,0,0 ">
-            <TextBlock Margin="0,0,10,0">За</TextBlock>
-            <TextBox Width="50" Margin="0,0,10,0"></TextBox>
-            <ComboBox Margin="0,0,10,0">
+            <TextBlock FontSize="13" Margin="0,0,23,0">За</TextBlock>
+            <TextBox Width="80" Margin="0,0,23,0"></TextBox>
+            <ComboBox FontSize="13" Margin="0,0,23,0">
                 <ComboBoxItem IsSelected="True">минут</ComboBoxItem>
                 <ComboBoxItem>часов</ComboBoxItem>
                 <ComboBoxItem>дней</ComboBoxItem>
-         </ComboBox>
-         <CheckBox VerticalAlignment="Center">Многократное</CheckBox>
-            
+            </ComboBox>
+            <CheckBox VerticalAlignment="Center" FontSize="13">Многократное</CheckBox>
+
         </StackPanel>
-        <Button Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" Width="70">Отмена</Button>
-        <Button Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" Width="70">Сохранить</Button>
+        <Button Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Width="95" Margin="30,0,0,0">Отмена</Button>
+        <Button Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Width="95" Margin="0,0,30,0">Сохранить</Button>
     </Grid>
 </Window>
