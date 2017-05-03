@@ -10,6 +10,13 @@
     <Window.DataContext>
         <local:MainWindowsViewModel></local:MainWindowsViewModel>
     </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="53*"/>
@@ -28,10 +35,10 @@
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontFamily="Comic Sans MS" FontSize="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="20,0,0,0 ">Новое событие</Label>
 
         <TextBlock  Grid.Column="0" Grid.Row="1" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Название события</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="1" Width="286" Height="20" HorizontalAlignment="Left" Margin="0,23,0,17" Text="{Binding EventName}"></TextBox>
+        <TextBox Style="{StaticResource EventNameStyle}" Grid.Column="1" Grid.Row="1" Width="286" Height="20" HorizontalAlignment="Left" Margin="0,23,0,17" Text="{Binding EventName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
         <TextBlock  Grid.Column="0" Grid.Row="2" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,18,0,0 ">Описание события</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="2" Width="286" MinHeight="44" HorizontalAlignment="Left" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,15" Text="{Binding EventDescription}"></TextBox>
+        <TextBox Style="{StaticResource EventDescriptionStyle}" Grid.Column="1" Grid.Row="2" Width="286" MinHeight="44" HorizontalAlignment="Left" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,15" Text="{Binding EventDescription, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
 
         <TextBlock  Grid.Column="0" Grid.Row="3" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Дата</TextBlock>
@@ -44,10 +51,29 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <DatePicker Grid.Column="0" Width="120" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,18,0,19" SelectedDate="{Binding Path=EventDate, Mode=TwoWay}"/>
+            <!--<DatePicker Grid.Column="0" Width="120" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,18,0,19" SelectedDate="{Binding Path=EventDate, Mode=TwoWay}"/>-->
+            <DatePicker Grid.Column="0" Width="120" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,18,0,19">
+                <DatePicker.SelectedDate>
+                    <Binding Path="EventDate" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:EventDateValidation></local:EventDateValidation>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </DatePicker.SelectedDate>
+            </DatePicker>
+
             <TextBlock  Grid.Column="1" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="35,0,0,0 ">Время</TextBlock>
             <Border Grid.Column="1" Width="95" Height="20" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,27,0" Grid.ColumnSpan="2" BorderBrush="Gray" BorderThickness="1">
-            <DatePickerTextBox Text="{Binding Path=EventDate, Mode=TwoWay, StringFormat='HH:mm'}" />
+            <!--<DatePickerTextBox Text="{Binding Path=EventDate, Mode=TwoWay, StringFormat='HH:mm'}" />-->
+                <DatePickerTextBox>
+                    <DatePickerTextBox.Text>
+                        <Binding Path="EventTime" StringFormat="HH:mm" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:EventTimeValidation></local:EventTimeValidation>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DatePickerTextBox.Text>
+                </DatePickerTextBox>
             </Border>
             <!--<TextBox Grid.Column="1" Width="95" Height="20" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,27,0" Grid.ColumnSpan="2" Text="{Binding EventDate.Value.TimeOfDay, Mode=OneWay, StringFormat='HH:mm'}"></TextBox>-->
             <!--<TextBox Text="{Binding Source={x:Static System:DateTime.Now}, StringFormat=Time:{HH:mm}}"  Grid.Column="2" Width="70" Height="20" VerticalAlignment="Center"></TextBox>-->
@@ -55,18 +81,28 @@
 
         <!--<TextBlock  Grid.Column="0" Grid.Row="3" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Дата</TextBlock>-->
         <TextBlock  Grid.Column="0" Grid.Row="4" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Место</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="4" Width="286" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding EventLocation}"></TextBox>
+        <TextBox Style="{StaticResource EventLocationStyle}" Grid.Column="1" Grid.Row="4" Width="286" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding EventLocation, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
         <CheckBox Grid.Column="0" Grid.Row="5" Margin="27,0,0,0 " FontSize="13" VerticalAlignment="Center" Grid.ColumnSpan="2" IsChecked="{Binding Notification}">Уведомление</CheckBox>
 
         <StackPanel Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="27,0,0,0 ">
-            <TextBlock FontSize="13" Margin="0,0,23,0">За</TextBlock>
-            <TextBox Text="{Binding NotificationTime}"  Width="80" Margin="0,0,23,0"></TextBox>
-            <ComboBox FontSize="13" Margin="0,0,23,0" ItemsSource="{Binding TimeFrames}" SelectedItem="{Binding SelectedTimeFrame}"></ComboBox>
-            <CheckBox VerticalAlignment="Center" FontSize="13" IsChecked="{Binding Repeated}">Многократное</CheckBox>
+            <TextBlock Visibility="{Binding Notification, Converter={StaticResource BooleanToVisConverter}}" FontSize="13" Margin="0,0,23,0">За</TextBlock>
+            <!--<TextBox Text="{Binding NotificationTime}"  Width="80" Margin="0,0,23,0"></TextBox>-->
+            <TextBox Visibility="{Binding Notification, Converter={StaticResource BooleanToVisConverter}}" Style="{StaticResource NotificationTimeStyle}" Width="80" Margin="0,0,23,0">
+                <TextBox.Text>
+                    <Binding Path="NotificationTime" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:TimeFrameValidation></local:TimeFrameValidation>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <ComboBox Visibility="{Binding Notification, Converter={StaticResource BooleanToVisConverter}}" FontSize="13" Margin="0,0,23,0" ItemsSource="{Binding TimeFrames}" SelectedItem="{Binding SelectedTimeFrame}"></ComboBox>
+            <CheckBox Visibility="{Binding Notification, Converter={StaticResource BooleanToVisConverter}}" VerticalAlignment="Center" FontSize="13" IsChecked="{Binding Repeated}">Многократное</CheckBox>
 
         </StackPanel>
-        <Button Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Width="95" Margin="30,0,0,0">Отмена</Button>
-        <Button Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Width="95" Margin="0,0,30,0">Сохранить</Button>
+        <Button Style="{StaticResource CancelButtonStyle}"  Grid.Column="0" Grid.Row="7" Command="{Binding Cancel}" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Width="95" Margin="30,0,0,0">Отмена</Button>
+        <Button Style="{StaticResource SaveButtonStyle}" Grid.Column="1" Grid.Row="7" Command="{Binding Save}" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Width="95" Margin="0,0,30,0">Сохранить</Button>
+
     </Grid>
 </Window>
