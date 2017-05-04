@@ -4,6 +4,17 @@
     <BooleanToVisibilityConverter x:Key="BooleanToVisConverter" />
     <local:StringToBooleanConverter x:Key="isNullConverter"/>
 
+    <Style x:Key="GridBackgroundStyle" TargetType="Grid">
+        <Setter Property="Background">
+            <Setter.Value>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="LightCyan" Offset="0.0"></GradientStop>
+                <GradientStop Color="White" Offset="1.0"></GradientStop>
+            </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        </Style>
+    
     <Style x:Key="EventNameStyle" TargetType="TextBox">
         <Setter Property="Background" Value="White"></Setter>
         <Style.Triggers>

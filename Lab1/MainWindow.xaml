@@ -17,7 +17,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource GridBackgroundStyle}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="53*"/>
             <ColumnDefinition Width="100*"/>
@@ -32,6 +32,8 @@
             <RowDefinition  Height="0.8*"/>
             <RowDefinition />
         </Grid.RowDefinitions>
+
+
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontFamily="Comic Sans MS" FontSize="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="20,0,0,0 ">Новое событие</Label>
 
         <TextBlock  Grid.Column="0" Grid.Row="1" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,0,0,0 ">Название события</TextBlock>
@@ -103,6 +105,5 @@
         </StackPanel>
         <Button Style="{StaticResource CancelButtonStyle}"  Grid.Column="0" Grid.Row="7" Command="{Binding Cancel}" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Width="95" Margin="30,0,0,0">Отмена</Button>
         <Button Style="{StaticResource SaveButtonStyle}" Grid.Column="1" Grid.Row="7" Command="{Binding Save}" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Width="95" Margin="0,0,30,0">Сохранить</Button>
-
     </Grid>
 </Window>
