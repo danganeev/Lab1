@@ -104,6 +104,6 @@
 
         </StackPanel>
         <Button Style="{StaticResource CancelButtonStyle}"  Grid.Column="0" Grid.Row="7" Command="{Binding Cancel}" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Width="95" Margin="30,0,0,0">Отмена</Button>
-        <Button Style="{StaticResource SaveButtonStyle}" Grid.Column="1" Grid.Row="7" Command="{Binding Save}" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Width="95" Margin="0,0,30,0">Сохранить</Button>
+        <Button Style="{StaticResource SaveButtonStyle}" Grid.Column="1" Grid.Row="7" Command="{Binding Save}" CommandParameter="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Width="95" Margin="0,0,30,0">Сохранить</Button>
     </Grid>
 </Window>

@@ -21,7 +21,7 @@ namespace Lab1
             {
                 return new ValidationResult(false, "Time cannot be negative!");
             }
-            switch (MainWindowsViewModel.SelectedTimeFrame)
+            switch ((string)value)
             {
                 default:
                     {

@@ -15,7 +15,7 @@ namespace Lab1
             try
             {
                 DateTime usertime = Convert.ToDateTime(value);
-                if (((MainWindowsViewModel.EventDate.Date == DateTime.Now.Date) && (usertime.TimeOfDay < DateTime.Now.TimeOfDay)) || (MainWindowsViewModel.EventDate.Date < DateTime.Now.Date))  return new ValidationResult(false, "The time has already passed!");
+                if (((usertime == DateTime.Now.Date) && (usertime.TimeOfDay < DateTime.Now.TimeOfDay)) || (usertime < DateTime.Now.Date))  return new ValidationResult(false, "The time has already passed!");
 
 
             }

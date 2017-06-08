@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Input;
 
 namespace Lab1
@@ -17,13 +18,13 @@ namespace Lab1
         private string _EventDescription;
         public string EventDescription { get { return _EventDescription; } set { _EventDescription = value; DoPropertyChanged("EventDescription"); } }
 
-        public static DateTime EventDate
+        public DateTime EventDate
         {
             get { return _EventDate.Date; }
             set { _EventDate = value.Date + _EventDate.TimeOfDay;
             }
         }
-        public static DateTime EventTime
+        public DateTime EventTime
         {
             get { return _EventDate; }
             set
@@ -32,7 +33,7 @@ namespace Lab1
             }
         }
 
-        private static DateTime _EventDate = DateTime.Now;
+        private DateTime _EventDate = DateTime.Now;
 
         private string _EventLocation;
         public string EventLocation { get { return _EventLocation; } set { _EventLocation = value; DoPropertyChanged("EventLocation"); } }
@@ -50,7 +51,7 @@ namespace Lab1
         public UInt32 NotificationTime { get { return _NotificationTime; } set { _NotificationTime = value; DoPropertyChanged("NotificationTime"); } }
 
         public List<String> TimeFrames { get; set; }
-        public static string SelectedTimeFrame { get; set; }
+        public string SelectedTimeFrame { get; set; }
 
         private bool? _Repeated;
         public bool? Repeated
@@ -76,10 +77,13 @@ namespace Lab1
                 "дней"
             };
             SelectedTimeFrame = TimeFrames[0];
-            Save = new ButtonCommand();
-            Cancel = new ButtonCommand();
+            Save = new SaveCommand();
+            Cancel = new CancelCommand();
 
         }
+
+
+
 
         public event PropertyChangedEventHandler PropertyChanged; 
         public void DoPropertyChanged(String name)
